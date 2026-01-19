@@ -3,7 +3,9 @@ import { useState } from "react";
 function TimerName({ onSave }) {
     const [formData, setFormData] = useState({
         name: '',
-        message: ''
+        message: '',
+        efficiency: 3,
+        energy: 3
     });
 
     const handleChange = (event) => {
@@ -22,7 +24,7 @@ function TimerName({ onSave }) {
             onSave(formData);
         }
 
-        setFormData ({ name: '', message: '' });
+        setFormData ({ name: '', message: '', efficiency: 3, energy: 3 });
 
     };
 
@@ -36,6 +38,37 @@ function TimerName({ onSave }) {
             placeholder="Namnge block"
             required
             />
+            <label>efficiency</label>
+            <div>
+            {[1, 2, 3, 4, 5].map(num => (
+                <label key={num} style={{ marginRight: '10px'}}>
+                <input
+                    type="radio"
+                    name="efficiency"
+                    value={num}
+                    checked={formData.efficiency === num}
+                    onChange={() => setFormData(prev => ({ ...prev, efficiency: num }))}
+                />
+                {num}
+                </label>
+            ))}
+            </div>
+            <label>Energy</label>
+            <div>
+            {[1, 2, 3, 4, 5].map(num => (
+                <label key={num} style={{ marginRight: '10px'}}>
+                <input
+                    type="radio"
+                    name="energy"
+                    value={num}
+                    checked={formData.energy === num}
+                    onChange={() => setFormData(prev => ({ ...prev, energy: num }))}
+                />
+                {num}
+                </label>
+            ))}
+            </div>
+
             <textarea
                 name="message"
                 value={formData.message}
@@ -46,7 +79,7 @@ function TimerName({ onSave }) {
             <button type="submit">Spara</button>
             </form>
     );
-    
+
 
 };
 
