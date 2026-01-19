@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TimerName from "./components/TimerName"; 
+import TimerName from "./components/TimerName";
 
 function App() {
   const [entries, setEntries] = useState([]);
@@ -10,15 +10,17 @@ function App() {
   };
 
   return (
-    <div>
+    <div style={{ padding: "20px" }}>
       <h1>Timer + Formulär</h1>
       <TimerName onSave={handleSave} />
 
       <h2>Sparade poster:</h2>
       <ul>
-        {entries.map((entry, i) => (
-          <li key={i}>
-            <strong>{entry.name}</strong>: {entry.message} ({entry.time})
+        {entries.map((entry, index) => (
+          <li key={index} style={{ marginBottom: "10px" }}>
+            <strong>{entry.name}</strong> (Effektivitet: {entry.efficiency}, Energi: {entry.energy})<br />
+            {entry.message}<br />
+            {entry.time}
           </li>
         ))}
       </ul>
